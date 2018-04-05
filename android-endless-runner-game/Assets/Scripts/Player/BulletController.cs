@@ -7,8 +7,10 @@ public class BulletController : MonoBehaviour {
 	public float speed;
 
 	private Rigidbody2D rb2D;
+	private Score score;
 
 	void Start () {
+		score = FindObjectOfType<Score> ();
 		rb2D = GetComponent<Rigidbody2D> ();
 		rb2D.velocity = Vector2.down * speed;
 	}
@@ -16,6 +18,7 @@ public class BulletController : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.tag == "Enemy") {
 			Destroy (collider.gameObject);
+			score.AddScore (1);
 			Destroy (gameObject);
 		}
 	}

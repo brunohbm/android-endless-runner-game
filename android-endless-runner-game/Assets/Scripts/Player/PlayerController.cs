@@ -11,15 +11,19 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D rb2D;
 	private Animator animator;
+	private Score score;
 
 	void Start () {
+		score = FindObjectOfType<Score> ();
 		rb2D = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 	}
 
 	void Update () {
-		if (!onFloor)
+		if (!onFloor) {
 			JumpAnimation ();
+			return;
+		}
 		Jump ();
 	}
 
@@ -31,8 +35,8 @@ public class PlayerController : MonoBehaviour {
 
 	void JumpAnimation() {
 		if (rb2D.velocity.y > 0) {
-			Debug.Log ("pulando");
 			animator.SetTrigger ("jump");
+			return;
 		}
 
 		if (rb2D.velocity.y < 0) {
@@ -49,13 +53,15 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (collision.gameObject.tag == "Enemy") {			
-			Debug.Log ("ai morri");
-			//SceneManager.LoadScene ("GameOver", LoadSceneMode.Single);
+			score.SaveScore ();
+			SceneManager.LoadScene ("GameOver", LoadSceneMode.Single);
 		}
 	}
 
 	void OnCollisionExit2D (Collision2D collision) {
-		if (collision.gameObject.tag == "Platform")
+		if (collision.gameObject.tag == "Platform") {
 			onFloor = false;
+			animator.SetBool ("onFloor", false);
+		}
 	}
 }
