@@ -23,4 +23,8 @@ public class EnemiesInstantiateController : MonoBehaviour {
 		yield return new WaitForSeconds (instanceInterval);
 		canInstance = true;
 	}
+
+	void OnEnable() {
+		canInstance = true;
+	}
 }

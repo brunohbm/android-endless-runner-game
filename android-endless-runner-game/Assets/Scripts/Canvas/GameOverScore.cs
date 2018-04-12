@@ -14,7 +14,7 @@ public class GameOverScore : MonoBehaviour {
 		SetScore ();
 		SetRecord ();
 	}
-		
+
 	void SetRecord () {
 		int score = PlayerPrefs.GetInt("score");
 		int record = PlayerPrefs.GetInt("record", 0);

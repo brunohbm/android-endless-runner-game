@@ -24,13 +24,13 @@ public class PlayerController : MonoBehaviour {
 			JumpAnimation ();
 			return;
 		}
-		Jump ();
+		if (onFloor && CrossPlatformInputManager.GetButtonDown("jump")) {
+			Jump ();
+		}
 	}
 
-	void Jump() {
-		if (onFloor && CrossPlatformInputManager.GetButtonDown("jump")) {
-			rb2D.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
-		}
+	public void Jump() {
+		rb2D.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
 	}
 
 	void JumpAnimation() {

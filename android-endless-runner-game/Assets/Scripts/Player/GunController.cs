@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Shot () {
+	public IEnumerator Shot () {
 		Instantiate (bulletPrefab, transform.position, transform.rotation);
 		yield return new WaitForSeconds (shotInterval);
 		canShot = true;

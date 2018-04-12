@@ -7,10 +7,13 @@ using UnityStandardAssets.CrossPlatformInput;
 public class GameOverScreen : MonoBehaviour {
 
 	void Update () {
-		if (CrossPlatformInputManager.GetButtonDown ("return"))
+		if (CrossPlatformInputManager.GetButtonDown ("return")) {
 			SceneManager.LoadScene ("Game", LoadSceneMode.Single);
+			return;
+		}
 
-		if (CrossPlatformInputManager.GetButtonDown ("menu"))
+		if (CrossPlatformInputManager.GetButtonDown ("menu")) {
 			SceneManager.LoadScene ("Menu", LoadSceneMode.Single);
+		}
 	}
 }
