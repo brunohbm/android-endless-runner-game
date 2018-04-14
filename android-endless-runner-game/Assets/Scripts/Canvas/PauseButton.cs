@@ -8,11 +8,15 @@ public class PauseButton : MonoBehaviour {
 
 	private bool paused;
 
+	private Image btnImage;
+
 	public GameObject pausePanel;
 	public GameObject enemiesInst;
+	public Sprite newSprite;
 
 	void Start () {
 		paused = false;
+		btnImage = GetComponent<Image> ();
 	}
 
 	void Update () {
@@ -33,13 +37,21 @@ public class PauseButton : MonoBehaviour {
 	void ActiveMenu () {
 		if (GameObject.FindWithTag("Enemy") != null) 
 		Destroy (GameObject.FindWithTag("Enemy"));
-		
+
+		ChangeSprite ();
 		pausePanel.SetActive (true);
 		enemiesInst.SetActive (false);
 	}
 
 	void DesactiveMenu () {
+		ChangeSprite ();
 		pausePanel.SetActive (false);
 		enemiesInst.SetActive (true);
+	}
+
+	void ChangeSprite() {
+		Sprite oldSprite = btnImage.sprite;
+		btnImage.sprite = newSprite;
+		newSprite = oldSprite;
 	}
 }

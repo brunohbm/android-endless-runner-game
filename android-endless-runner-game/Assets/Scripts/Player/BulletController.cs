@@ -17,9 +17,7 @@ public class BulletController : MonoBehaviour {
 		
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.tag == "Enemy") {
-			Destroy (collider.gameObject);
-			score.AddScore (1);
-			Destroy (gameObject);
+			StartCoroutine (Kill(collider.gameObject));
 		}
 	}
 
@@ -27,5 +25,13 @@ public class BulletController : MonoBehaviour {
 		if (collider.gameObject.tag == "Platform") {
 			Destroy (gameObject);
 		}
+	}
+
+	IEnumerator Kill (GameObject enemy) {
+		enemy.GetComponent<Animator> ().SetTrigger("die");
+		yield return new WaitForSeconds (0.06f);
+		Destroy (enemy);
+		this.score.AddScore (1);
+		Destroy (this.gameObject);
 	}
 }

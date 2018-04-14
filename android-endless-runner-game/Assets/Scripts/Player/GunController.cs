@@ -11,6 +11,12 @@ public class GunController : MonoBehaviour {
 
 	private bool canShot = true;
 
+	private Animator animator;
+
+	void Start () {
+		animator = GetComponent<Animator> ();
+	}
+
 	void Update () {
 		if (CrossPlatformInputManager.GetButtonDown ("fire") && canShot) { 
 			canShot = false;
@@ -19,8 +25,10 @@ public class GunController : MonoBehaviour {
 	}
 
 	public IEnumerator Shot () {
+		animator.SetTrigger ("fire");
 		Instantiate (bulletPrefab, transform.position, transform.rotation);
 		yield return new WaitForSeconds (shotInterval);
 		canShot = true;
+		animator.ResetTrigger ("fire");
 	}
 }

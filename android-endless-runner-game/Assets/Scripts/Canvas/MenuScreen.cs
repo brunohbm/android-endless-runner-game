@@ -14,6 +14,11 @@ public class MenuScreen : MonoBehaviour {
 
 		if (CrossPlatformInputManager.GetButtonDown ("quit")) {
 			QuitGame ();
+			return;
+		}
+
+		if (CrossPlatformInputManager.GetButtonDown ("record")) {
+			OpenScoreScene ();
 		}
 	}
 
@@ -23,5 +28,9 @@ public class MenuScreen : MonoBehaviour {
 
 	void QuitGame () {
 		Application.Quit ();
+	}
+
+	void OpenScoreScene () {
+		SceneManager.LoadScene ("GameOver", LoadSceneMode.Single);
 	}
 }
