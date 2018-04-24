@@ -22,6 +22,7 @@ public class Tutorial : MonoBehaviour {
 			Destroy (enemy.gameObject);
 			FinishTutorial ();
 		}
+		
 		playerController = FindObjectOfType<PlayerController> ();
 		gunController = FindObjectOfType<GunController> ();
 	}
@@ -33,7 +34,7 @@ public class Tutorial : MonoBehaviour {
 				return;
 			}
 
-			if (Vector3.Distance(enemy.position, player.position) >= 2.5F && step == 1) {
+			if (Vector3.Distance(enemy.position, player.position) >= 2.3F && step == 1) {
 				ShotAction ();
 			}
 			return;
@@ -66,6 +67,8 @@ public class Tutorial : MonoBehaviour {
 			image.color += new Color (0, 0, 0, 0.05F);
 			yield return new WaitForSeconds (time);
 		}
+
+		yield return new WaitForSeconds (time * 2);
 
 		for (int cont = 0; cont < 20; cont ++)  {
 			image.color -= new Color (0, 0, 0, 0.05F);

@@ -13,5 +13,9 @@ public class DefaultEnemy : MonoBehaviour {
 		if (xPosition >= transform.position.x) {
 			Destroy (gameObject);
 		}
+
+		if (GetComponent<Animator> ().GetCurrentAnimatorStateInfo(0).IsName("End")) {
+			Destroy (gameObject);
+		}
 	}
 }

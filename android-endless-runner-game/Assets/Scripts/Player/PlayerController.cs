@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 			animator.ResetTrigger ("fall");
 		}
 
-		if (collision.gameObject.tag == "Enemy") {			
+		if (collision.gameObject.tag == "Enemy"  || collision.gameObject.tag == "SceneEnemy") {			
 			score.SaveScore ();
 			SceneManager.LoadScene ("GameOver", LoadSceneMode.Single);
 		}
