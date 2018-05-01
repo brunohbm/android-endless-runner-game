@@ -9,6 +9,7 @@ public class EnemiesInstantiateController : MonoBehaviour {
 	public GameObject[] enemies;
 
 	private bool canInstance = true;
+	private float controlTime;
 
 	void Update () {
 		if (canInstance) {
@@ -20,7 +21,12 @@ public class EnemiesInstantiateController : MonoBehaviour {
 	IEnumerator InstantiateEnemy () {
 		int i = Random.Range (0, enemies.Length);
 		Instantiate (enemies [i]);
-		yield return new WaitForSeconds (instanceInterval);
+		if (enemies [i].tag == "Enemy") {
+			controlTime = 0.5f;
+		} else { 
+			controlTime = 1;
+		}
+		yield return new WaitForSeconds (instanceInterval * controlTime);
 		canInstance = true;
 	}
 

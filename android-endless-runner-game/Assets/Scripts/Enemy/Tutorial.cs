@@ -11,6 +11,8 @@ public class Tutorial : MonoBehaviour {
 	public Image goImage;
 	public Image rightImage;
 	public Image leftImage;
+	public Button rightBTN;
+	public Button	leftBTN;
 
 	PlayerController playerController;
 	GunController gunController;
@@ -18,13 +20,15 @@ public class Tutorial : MonoBehaviour {
 	int step = 0;
 
 	void Start () {
-		if (PlayerPrefs.GetInt("record", 0) > 0) {
+		if (PlayerPrefs.GetInt ("record", 0) > 0) {
 			Destroy (enemy.gameObject);
 			FinishTutorial ();
+		} else {
+			rightBTN.gameObject.SetActive(false);
+			leftBTN.gameObject.SetActive(false);
+			playerController = FindObjectOfType<PlayerController> ();
+			gunController = FindObjectOfType<GunController> ();
 		}
-		
-		playerController = FindObjectOfType<PlayerController> ();
-		gunController = FindObjectOfType<GunController> ();
 	}
 
 	void Update () {
@@ -80,6 +84,8 @@ public class Tutorial : MonoBehaviour {
 	}
 
 	void FinishTutorial () {
+		rightBTN.gameObject.SetActive(true);
+		leftBTN.gameObject.SetActive(true);
 		enemiesInst.SetActive (true);
 		Destroy (goImage.gameObject);
 		Destroy (leftImage.gameObject);

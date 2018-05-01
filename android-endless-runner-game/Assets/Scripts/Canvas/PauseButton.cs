@@ -35,8 +35,21 @@ public class PauseButton : MonoBehaviour {
 	}
 
 	void ActiveMenu () {
-		if (GameObject.FindWithTag("Enemy") != null) 
-		Destroy (GameObject.FindWithTag("Enemy"));
+		if (GameObject.FindWithTag ("Enemy") != null) {
+			GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+			foreach(GameObject go in enemies)
+			{
+				Destroy(go);
+			}
+		}
+
+		if (GameObject.FindWithTag ("SpawnPlatform") != null) {
+			GameObject[] platforms = GameObject.FindGameObjectsWithTag ("SpawnPlatform");
+			foreach(GameObject go in platforms)
+			{
+				Destroy(go);
+			}
+		}
 
 		ChangeSprite ();
 		pausePanel.SetActive (true);

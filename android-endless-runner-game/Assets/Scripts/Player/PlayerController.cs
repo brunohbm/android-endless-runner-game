@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
+	public AudioSource jumpSound;
+
 	public float jumpForce;
 	public bool onFloor;
 
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 		score = FindObjectOfType<Score> ();
 		rb2D = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		jumpSound = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void Jump() {
 		rb2D.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
+		jumpSound.Play ();
 	}
 
 	void JumpAnimation() {
